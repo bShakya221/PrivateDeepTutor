@@ -340,10 +340,10 @@ ENTRYPOINT ["/app/entrypoint.sh"]
 FROM production AS development
 
 # Re-add full node_modules for development hot-reload
-# (Production uses standalone output which doesn't include full node_modules)
 COPY --from=frontend-builder /app/web/node_modules ./web/node_modules
 COPY --from=frontend-builder /app/web/package.json ./web/package.json
 COPY --from=frontend-builder /app/web/next.config.js ./web/next.config.js
+COPY web/ ./web/ 
 
 # Install development tools
 RUN apt-get update && apt-get install -y --no-install-recommends \
